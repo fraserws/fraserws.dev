@@ -1,0 +1,92 @@
+---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import "../styles.css";
+export type Props = {
+  title?: string;
+  type?: string;
+  description?: string;
+  overrideTitle?: boolean;
+  canonical?: string;
+  date?: string;
+  sharingImageUrl?: string;
+};
+
+const { pathname } = Astro.url;
+const isHome = pathname === "/";
+let {
+  title = "Fraser Walker-Saunders",
+  sharingImageUrl = "/sharing.png",
+  type = "website",
+  description = "Fraser Walker-Saunders is a software engineer based Brighton ",
+  date,
+} = Astro.props as Props;
+if (!isHome) {
+  title = `${title} - Fraser Walker-Saunders`;
+}
+
+const SOCIAL_LINKS = [
+  {
+    name: "GitHub",
+    url: "https://github.com/fraserws",
+  },
+
+  {
+    name: "LinkedIn",
+    url: "https://www.linkedin.com/in/fraser-walker-saunders/",
+  },
+];
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={sharingImageUrl} />
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={Astro.request.url} />
+    <meta name="author" content="Fraser Walker-Saunders" />
+    {date && <meta property="article:published_time" content={date} />}
+    <link href="/favicon.ico" rel="icon" type="image/x-icon" />
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="/favicon.ico" rel="apple-touch-icon" />
+    <meta content="#ce6fea" name="theme-color" />
+  </head>
+
+  <body
+    class={`preload-transitions bg-white text-slate-800 dark:text-slate-200 dark:bg-neutral-900 min-w-[20rem]
+	antialiased${isHome ? " flex items-center" : ""}`}
+  >
+    <div
+      class={`w-full m-auto p-6 flex-grow flex flex-col max-w-3xl lg:max-w-4xl ${
+        isHome ? "h-full max-h-[44rem]" : "min-h-full"
+      }`}
+    >
+      <Header showHome={!isHome} />
+
+      <header>
+        <a href="#skip" class="sr-only focus:not-sr-only"> Skip to content</a>
+        <nav class="text-sm sm:text-base"></nav>
+      </header>
+      <main id="skip" class="flex flex-col flex-grow py-12">
+        <slot />
+      </main>
+      <Footer />
+    </div>
+    <script is:inline>
+      setTimeout(() => {
+        if (
+          typeof window !== "undefined" &&
+          document.body.classList.contains("preload-transitions")
+        ) {
+          document.body.classList.remove("preload-transitions");
+        }
+      }, 0);
+    </script>
+  </body>
+</html>
