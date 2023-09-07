@@ -33,5 +33,6 @@ export default defineConfig({
       }
       return item;
     }
-  }), tailwind(), prefetch(), preact()]
+  }), tailwind(), prefetch(), preact(),
+]
 });
