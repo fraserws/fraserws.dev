@@ -1,16 +1,19 @@
-import rss from '@astrojs/rss';
-import { getCollection } from 'astro:content';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
-export async function get(context) {
-	const posts = await getCollection('blog');
-	return rss({
-		title: SITE_TITLE,
-		description: SITE_DESCRIPTION,
-		site: context.site,
-		items: posts.map((post) => ({
-			...post.data,
-			link: `/blog/${post.slug}/`,
-		})),
-	});
+import rss from "@astrojs/rss";
+import { getCollection } from "astro:content";
+
+export async function GET() {
+  const blog = await getCollection('blog');
+  return rss({
+    title: 'Astro Learner | Blog',
+    description: 'My journey learning Astro',
+    site: 'https://my-blog-site.netlify.app',
+    items: blog.map((post) => ({
+      title: post.data.title,
+      pubDate: post.data.pubDate,
+      description: post.data.description,
+      link: `/posts/${post.slug}/`,
+    })),
+    customData: `<language>en-us</language>`,
+  });
 }

@@ -15,7 +15,7 @@ type PostFrontMatter = {
 const title = "Blog";
 const description =
   "Here is my blog. I started to write not so long ago and trying my best";
-const posts = await Astro.glob<PostFrontMatter>("./blog/*.md");
+const posts = await Astro.glob<PostFrontMatter>("../content/blog/*.md");
 
 posts.sort(
   (a, b) =>

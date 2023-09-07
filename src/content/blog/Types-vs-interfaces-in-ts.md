@@ -87,10 +87,10 @@ Here's a concise summary of the key distinctions:
 | Inheritance                             | Yes                       | No                    |
 | Implicit Index Signature                | Yes                       | No                    |
 | Unions, Mapped Types, Conditional Types | Limited                   | Yes                   |
-| Default Recommendation                  | Use interfaces by default | Use types when needed |
 
 
-##Conclusion
+
+## Conclusion
 
 Types and interfaces are both powerful tools for defining types in TypeScript. The best choice for your project depends on your specific requirements. As a general guideline, start with interfaces for object types and use types when dealing with standalone types or advanced type features.
 
