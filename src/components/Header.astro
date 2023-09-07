@@ -1,5 +1,6 @@
 ---
 import HeaderLink from "./HeaderLink.astro";
+import { ViewTransitions } from "astro:transitions";
 
 const { showHome } = Astro.props;
 ---
@@ -17,4 +18,5 @@ const { showHome } = Astro.props;
   >
     LinkedIn
   </HeaderLink>
+  <ViewTransitions />
 </nav>
