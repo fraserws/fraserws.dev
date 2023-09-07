@@ -3,6 +3,7 @@ import { format, parse } from "date-fns";
 import calcReadingTime from "reading-time";
 
 import Layout from "../layouts/Layout.astro";
+import Counter from "../components/ScrollProgressBar"
 
 const { title, publishedAt, original } = Astro.props.content;
 const publishDate = format(
@@ -14,6 +15,7 @@ const { pathname } = Astro.url;
 const slug = pathname.split("/").splice(-1)[0];
 ---
 
+<Counter client:load />
 <Layout title={title} canonical={original?.url}>
   <article
     class="my-6"
