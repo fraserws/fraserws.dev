@@ -4,8 +4,9 @@ import calcReadingTime from "reading-time";
 
 import Layout from "../layouts/Layout.astro";
 import ScrollProgressBar from "../components/ScrollProgressBar";
+import { Image } from "astro:assets";
 
-const { title, publishedAt, original } = Astro.props.content;
+const { title, publishedAt, original,imageSrc } = Astro.props.content;
 const publishDate = format(
   parse(publishedAt, "yyyy-MM-dd", new Date()),
   "MMMM d, yyyy"
@@ -54,6 +55,22 @@ const slug = pathname.split("/").splice(-1)[0];
         <div class="text-slate-500"></div>
       </div>
     </header>
+    {imageSrc && (
+  <div class="relative mb-8 sm:mb-10 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 rounded-lg overflow-hidden">
+    <div class="h-96 mx-auto aspect-w-16 aspect-h-9 ">
+      <Image
+        class="object-fit   object-center"
+        src={imageSrc}
+        alt={title}
+        width={500}
+        height={500}
+      />
+    </div>
+  </div>
+)}
+
+ 
+   
     <section
       class="prose dark:prose-dark w-full mb-6 mx-auto"
       item-prop="articleBody"
