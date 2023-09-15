@@ -1,45 +1,37 @@
 ---
 layout: /src/layouts/Post.astro
 title: Do we need Redux?
-summary: Redux has been a game-changer in the React ecosystem, offering a global store with immutable data and effectively eliminating prop-drilling issues in our component hierarchy. 
+summary: Redux has been a game-changer in the React ecosystem, offering a global store with immutable data and effectively eliminating prop-drilling issues in our component hierarchy.
 publishedAt: "2023-08-20"
-
 ---
 
 Reimagining State Management: Do We Always Need Redux?
 
-Redux has been a game-changer in the React ecosystem, offering a global store with immutable data and effectively eliminating prop-drilling issues in our component hierarchy. It has been a go-to solution for sharing immutable data across complex applications. However, it's time to question whether we always need Redux, especially with the emergence of alternatives like React Query.
-# The Challenge of Single Page Applications (SPAs)
+Redux has been a go-to solution for sharing immutable data across complex applications. However, it's time to question whether we always need Redux, especially with the emergence of alternatives like React Query.
 
-The rise of Single Page Applications (SPAs) like React has reshaped how we build web applications. The separation of backend and frontend code allows for specialization and clean separation of concerns. However, this division introduced a substantial complexity, mainly revolving around state management.
-
-Asynchronous data fetching now means that data exists in two places: the frontend and the backend. We must devise strategies for storing this data globally so that it's available to all our components, while maintaining a cache to reduce network latency. A significant portion of frontend development is focused on managing our global store without falling into the traps of state bugs, data denormalization, or stale data.
 ### Redux: More Than Just a Cache
 
 One common pitfall with Redux and similar state management libraries is that we often treat them as mere caches for our backend state. We fetch data, add it to our store using reducers and actions, and periodically re-fetch it to keep it up-to-date. Essentially, we're asking Redux to do much more than it was designed for, turning it into a catch-all solution for our problems.
 
 However, we should remember that our frontend and backend states are never perfectly synchronized. At best, we create the illusion of synchronization. This inherent disconnect is a consequence of the client-server model and underscores the need for caching. Attempting to recreate the entire backend state on the frontend, as Redux often encourages, blurs the line between frontend and backend responsibilities.
 
-Frontend developers shouldn't need an in-depth understanding of database tables and relationships to build a simple UI. Nor should they be burdened with data normalization tasks. These responsibilities should fall to the backend developers, who can provide an abstraction for frontend developers through a well-documented API.
 ### The Proliferation of Redux Add-Ons
 
 To address the complexities of managing data from the backend, numerous libraries emerged, including redux-observable, redux-saga, and redux-thunk. These libraries added layers of complexity to an already boilerplate-heavy Redux. However, it's arguable that most of these solutions miss the mark, introducing more complexity than necessary.
-### A Simpler Approach to Backend State: Enter React Query
 
-What if we shifted our perspective and stopped trying to manage our backend state within our frontend code? Instead, what if we treated it as a cache that only required periodic updates? By treating our frontends as straightforward display layers that read from a cache, our code could become significantly more manageable and accessible to pure frontend developers. This approach offers all the benefits of separating concerns without the drawbacks of building SPAs.
-Embracing Simplicity with React Query
+### Embracing Simplicity with React Query
 
 React Query is an alternative library that excels at storing backend state without the complexity associated with Redux. Let's delve into why React Query is a compelling option:
 
--   Simple API: React Query offers a straightforward API with hooks for managing queries (data fetching) and mutations (data changes).
+- Simple API: React Query offers a straightforward API with hooks for managing queries (data fetching) and mutations (data changes).
 
--   Productivity Boost: Since adopting React Query, developers often find themselves writing significantly less boilerplate code compared to Redux. This allows them to focus more on crafting a seamless UI/UX.
+- Productivity Boost: Since adopting React Query, developers often find themselves writing significantly less boilerplate code compared to Redux. This allows them to focus more on crafting a seamless UI/UX.
 
--   Data Handling: React Query handles data refetching, caching, and stale data invalidation efficiently, out of the box. Configuration options are available for fine-tuning.
+- Data Handling: React Query handles data refetching, caching, and stale data invalidation efficiently, out of the box. Configuration options are available for fine-tuning.
 
--   Simplified Usage: Developers can use the useQuery hook wherever data is needed, specifying a unique key for the query and the asynchronous function to fetch the data. The implementation details don't matter, whether you use Axios or the Fetch API.
+- Simplified Usage: Developers can use the useQuery hook wherever data is needed, specifying a unique key for the query and the asynchronous function to fetch the data. The implementation details don't matter, whether you use Axios or the Fetch API.
 
-  -  Mutations: React Query also provides the useMutation hook for changing backend data, simplifying the process.
+- Mutations: React Query also provides the useMutation hook for changing backend data, simplifying the process.
 
 ### What About Frontend State?
 
