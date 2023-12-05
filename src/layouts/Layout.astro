@@ -1,6 +1,7 @@
 ---
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
+import PostHog from "../components/posthog.astro";
 import "../styles.css";
 export type Props = {
   title?: string;
@@ -56,6 +57,7 @@ const SOCIAL_LINKS = [
     <link href="/favicon.gif" rel="shortcut icon" type="image/x-icon" />
     <link href="/favicon.gif" rel="apple-touch-icon" />
     <meta content="#ce6fea" name="theme-color" />
+    <PostHog />
   </head>
 
   <body
