@@ -1,23 +1,19 @@
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import { defineConfig } from "astro/config";
-
-// https://astro.build/config
-
-// https://astro.build/config
 import tailwind from "@astrojs/tailwind";
-
-// https://astro.build/config
 import prefetch from "@astrojs/prefetch";
-
-// https://astro.build/config
 import preact from "@astrojs/preact";
-
-// https://astro.build/config
-
-// https://astro.build/config
+import vercel from '@astrojs/vercel/serverless';
 export default defineConfig({
   site: "https://fraserws.dev",
+  output: 'server',
+  adapter: vercel({
+    webAnalytics: {
+      enabled: true,
+    },
+  }),
+
   experimental: {
     viewTransitions: true
   },
@@ -33,6 +29,6 @@ export default defineConfig({
       }
       return item;
     }
-  }), tailwind(), prefetch(), preact({compat: true}),
-]
+  }), tailwind(), prefetch(), preact({ compat: true }),
+  ]
 });
