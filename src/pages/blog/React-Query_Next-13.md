@@ -3,9 +3,7 @@ layout: /src/layouts/Post.astro
 title: How to use Tanstack Query in Next.js 13 App router
 summary: Tanstack Query + Next.js 13
 publishedAt: "2023-08-20"
-
 ---
-
 
 # Implementing Tanstack Query in a Next.js 13 App Router
 
@@ -28,43 +26,46 @@ During the process, you’ll be prompted to choose which features to enable for 
 In order to integrate Tanstack Query into your Next.js 13 app, we'll create a component named `ReactQueryProvider` that will wrap your application with the necessary context for querying and caching data. Let's create a file named `ReactQueryProvider.tsx` in the `src/app` folder and add the following code:
 
 ```tsx
-import {QueryClientProvider } from '@tansktack/react-query'
+import { QueryClientProvider } from "@tansktack/react-query";
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
 
-export const ReactQueryProvider = ({children}: {children: React.ReactNode}) => {
-    return(
-    <QueryClientProvider client={queryClient}>
-        {children}
-    </QueryClientProvider>
-    )
-}
+export const ReactQueryProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
+  return (
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+  );
+};
 ```
-
 
 ### Integrating the ReactQueryProvider into the Layout
 
 Now that we have the ReactQueryProvider component, we'll integrate it into the main layout of our Next.js app. Locate the layout.tsx file and make the following modifications:
+
 ```tsx
 "use client";
 
-import {QueryClient, QueryClientProvider } from '@tansktack/react-query'
-import "./global.css"
+import { QueryClient, QueryClientProvider } from "@tansktack/react-query";
+import "./global.css";
 
-
-export default async function RootLayout({children}: {children: React.ReactNode}) {
-    return(
-        <ReactQueryProvider>
-        
-        <html lang="en">
-        <body>
-            {children}
-        </body>
-        </html>
-        </ReactQueryProvider>
-    )
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <ReactQueryProvider>
+      <html lang="en">
+        <body>{children}</body>
+      </html>
+    </ReactQueryProvider>
+  );
 }
 ```
+
 ## Conclusion
 
 Congratulations! You've successfully integrated Tanstack Query into the router of your Next.js 13 application. By following this tutorial, you've gained the ability to harness Tanstack Query's features for streamlined data fetching and management within your app. This integration sets the stage for building more dynamic and responsive applications.

@@ -69,6 +69,19 @@ img {
   animation: slide 10s linear infinite;
 }
 
+.gradient-circle {
+  background-image: linear-gradient(
+    135deg,
+    /* 135 degrees for a diagonal gradient */ #2dd2dd 0%,
+    #9a47f3 25%,
+    #fcb26d 50%,
+    #ff61e6 75%,
+    #2dd2dd 100%
+  );
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 .avatar {
   transition: transform 0.3s;
   transform: rotateY(0);

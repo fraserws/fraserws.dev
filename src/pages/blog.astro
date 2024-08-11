@@ -19,8 +19,8 @@ const posts = await Astro.glob<PostFrontMatter>("./blog/*.md");
 
 posts.sort(
   (a, b) =>
-    Date.parse(a.frontmatter.publishedAt) -
-    Date.parse(b.frontmatter.publishedAt)
+    Date.parse(b.frontmatter.publishedAt) -
+    Date.parse(a.frontmatter.publishedAt)
 );
 ---
 
